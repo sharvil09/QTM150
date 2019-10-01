@@ -1,0 +1,36 @@
+---
+title: "HW2 QTM 150"
+author: "Sharvil Patel"
+date: "10/1/2019"
+output: html_document
+---
+
+# Pulling in Data
+```{r}
+library(tidyverse)
+mw <- midwest
+```
+
+# Q1
+```{r}
+qplot(popdensity, percbelowpoverty, data = mw)
+```
+There is no clear relationship in this plot, but maybe differentiating rural and metropolitan counties will produce valuable results. Here is that plot:
+
+```{r}
+qplot(popdensity, percbelowpoverty, data = mw, facets = ~inmetro)
+```
+Maybe more density is related to higher poverty in metropolitan counties while rural counties have the opposite trend. In the graph without controls, we can see that these two values must be nixing one another out.
+
+# Q2
+```{r}
+diabobes <- read_csv("Downloads/obes_diab_trend.csv")
+head(diabobes)
+```
+
+```{r}
+qplot(year, prevalence, data=diabobes, color = condition, geom = c("line"))
+```
+
+The data shows that obesity has been increasing while diabetes has plateaued from 1990 until 2010.
+This might be due to the fact that diabetes has been a focal point for healthcare as value-based care becomes a mainstay in care delivery reimbursement models whereas obesity has not been targeted as heavily. It also shows that the majority of the increase is likely due to obesity growth and not diabetes prevalencce.
